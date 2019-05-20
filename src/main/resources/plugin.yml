@@ -1,0 +1,9 @@
+name: KiXServ
+version: 1.0.0
+author: cfi2017
+main: dev.swiss.kix.Main
+api-version: '1.13'
+website: https://swiss.dev/
+commands:
+  kix:
+    description: hub command for all kix commands
