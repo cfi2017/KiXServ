@@ -107,4 +107,28 @@ public class KixCommand extends ExtendedBaseCommand {
         this.plugin.reload();
     }
 
+    @Subcommand("warp add")
+    @CommandPermission(Permissions.WARP_ADD)
+    public void onWarpAdd(CommandSender sender, String warp) {
+
+    }
+
+    @Subcommand("warp remove")
+    @CommandPermission(Permissions.WARP_REMOVE)
+    public void onWarpRemove(CommandSender sender, String warp) {
+
+    }
+
+    @Subcommand("warp edit")
+    @CommandPermission(Permissions.WARP_EDIT)
+    public void onWarpEdit(CommandSender sender, String warp) {
+
+    }
+
+    @Subcommand("warp list")
+    @CommandPermission(Permissions.WARP_LIST)
+    public void onWarpList(CommandSender sender) {
+
+    }
+
 }

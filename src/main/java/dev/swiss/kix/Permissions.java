@@ -21,4 +21,12 @@ public class Permissions {
     public static final String REMOVE_BOUNTY = "kix.bounties.remove";
     public static final String VIEW_BOUNTIES = "kix.bounties.view";
 
+    /**
+     * Warps
+     */
+    public static final String WARP_ADD = "kix.warp.add";
+    public static final String WARP_REMOVE = "kix.warp.remove";
+    public static final String WARP_LIST = "kix.warp.list";
+    public static final String WARP_EDIT = "kix.warp.edit";
+
 }

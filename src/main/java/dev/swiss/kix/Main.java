@@ -22,7 +22,6 @@ public class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-
         ConfigurationSerialization.registerClass(ReplacementRule.class, "ReplacementRule");
 
         config.options().copyDefaults(true);
