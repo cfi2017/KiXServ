@@ -5,9 +5,12 @@ import dev.swiss.kix.ExtendedBaseCommand;
 import dev.swiss.kix.Main;
 import dev.swiss.kix.Permissions;
 import dev.swiss.kix.profanity.ReplacementRule;
+import org.bukkit.ChatColor;
+import org.bukkit.Color;
 import org.bukkit.command.CommandSender;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @CommandAlias("kix|kixstar|k")
 public class KixCommand extends ExtendedBaseCommand {
@@ -64,9 +67,7 @@ public class KixCommand extends ExtendedBaseCommand {
     public void onProfanityList(CommandSender sender) {
         List<String> blacklist = Main.profanityFilter.getBlacklist();
         sendMsg(sender, heading("Profanities:"));
-        for (String profanity : blacklist) {
-            sendMsg(sender, profanity);
-        }
+        sendMsg(sender, String.format("%s%s", ChatColor.GREEN, String.join(", ", blacklist)));
     }
 
     @Subcommand("profanity rule remove")
