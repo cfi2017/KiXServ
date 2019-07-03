@@ -2,7 +2,7 @@ name: KiXServ
 version: 1.0.0
 author: cfi2017
 main: dev.swiss.kix.Main
-api-version: '1.13'
+api-version: '1.14'
 website: https://swiss.dev/
 commands:
   kix:

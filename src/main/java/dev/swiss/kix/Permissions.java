@@ -6,6 +6,7 @@ public class Permissions {
      * General
      */
     public static final String RELOAD_PLUGIN = "kix.reload";
+    public static final String EVAL = "kix.eval";
 
     /**
      * Profanity

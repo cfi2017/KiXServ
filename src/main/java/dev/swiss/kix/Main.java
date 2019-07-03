@@ -4,6 +4,7 @@ import co.aikar.commands.PaperCommandManager;
 import dev.swiss.kix.commands.KixCommand;
 import dev.swiss.kix.profanity.ProfanityFilter;
 import dev.swiss.kix.profanity.ReplacementRule;
+import dev.swiss.kix.spawner.SpawnerDestroyFilter;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class Main extends JavaPlugin {
     private FileConfiguration config = this.getConfig();
     public static ProfanityFilter profanityFilter = new ProfanityFilter();
+    public static SpawnerDestroyFilter spawnerDestroyFilter = new SpawnerDestroyFilter();
     public static final Logger LOGGER = LoggerFactory.getLogger("KiXServ");
 
     @Override
@@ -30,6 +32,7 @@ public class Main extends JavaPlugin {
         loadConfig();
 
         getServer().getPluginManager().registerEvents(profanityFilter, this);
+        getServer().getPluginManager().registerEvents(spawnerDestroyFilter, this);
         PaperCommandManager commandManager = new PaperCommandManager(this);
         commandManager.registerCommand(new KixCommand(this));
     }

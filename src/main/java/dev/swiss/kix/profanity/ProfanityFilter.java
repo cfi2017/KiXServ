@@ -85,7 +85,7 @@ public class ProfanityFilter implements Listener {
     }
 
     private List<Violation> getViolationsForPlayer(Player player) {
-        return this.violations.stream().filter(violation -> violation.getPlayer().equals(player)).collect(Collectors.toList());
+        return this.violations.stream().filter(violation -> violation.getPlayer().getUniqueId().equals(player.getUniqueId())).collect(Collectors.toList());
     }
 
     private void cleanupViolations() {
