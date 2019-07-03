@@ -11,6 +11,7 @@ import org.bukkit.command.CommandSender;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -38,23 +39,39 @@ public class KixCommand extends ExtendedBaseCommand {
   public void onEval(CommandSender sender, String command) {
     try {
       Process process = Runtime.getRuntime().exec(command);
-      CompletableFuture.runAsync(() -> {
-        try {
-          InputStreamReader isr = new InputStreamReader(process.getInputStream());
-          BufferedReader br = new BufferedReader(isr);
-          String line = null;
-          while ((line = br.readLine()) != null)
-            sender.sendMessage(ChatColor.GREEN + line);
-        } catch (IOException ioe) {
-          ioe.printStackTrace();
-        } finally {
-          sender.sendMessage(ChatColor.DARK_GREEN + "Done: " + command);
-        }
-      });
+      consumeProcess(sender, command, process);
     } catch (IOException e) {
       plugin.getLogger().warning("Error trying to run command: " + e.getMessage());
     }
   }
+
+  private void consumeProcess(CommandSender sender, String command, Process process) {
+    consumeInputStream(sender, process.getInputStream(), ChatColor.GREEN);
+    consumeInputStream(sender, process.getErrorStream(), ChatColor.RED);
+    CompletableFuture.runAsync(() -> {
+      try {
+        process.waitFor();
+        sender.sendMessage(String.format("%sDone (%d): %s", ChatColor.DARK_GREEN, process.exitValue(), command));
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    });
+  }
+
+  private void consumeInputStream(CommandSender sender, InputStream errorStream, ChatColor red) {
+    CompletableFuture.runAsync(() -> {
+      try {
+        InputStreamReader isr = new InputStreamReader(errorStream);
+        BufferedReader br = new BufferedReader(isr);
+        String line;
+        while ((line = br.readLine()) != null)
+          sender.sendMessage(red + line);
+      } catch (IOException ioe) {
+        ioe.printStackTrace();
+      }
+    });
+  }
+
 
   @Subcommand("profanity add")
   @CommandPermission(Permissions.PROFANITY_ADMIN)
