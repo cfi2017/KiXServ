@@ -8,13 +8,13 @@
     <artifactId>KiXServ</artifactId>
     <version>1.0-SNAPSHOT</version>
     <dependencies>
-        <dependency>
+        <!--<dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.14.3-R0.1-SNAPSHOT</version>
             <type>jar</type>
             <scope>provided</scope>
-        </dependency>
+        </dependency>-->
         <dependency>
             <groupId>co.aikar</groupId>
             <artifactId>acf-paper</artifactId>
@@ -36,10 +36,10 @@
             <version>2.9.2</version>
         </dependency>
         <dependency>
-            <groupId>io.papermc</groupId>
-            <artifactId>paperlib</artifactId>
-            <version>1.0.2</version>
-            <scope>compile</scope>
+            <groupId>com.destroystokyo.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.14.3-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -68,10 +68,6 @@
                         <relocation>
                             <pattern>co.aikar.commands</pattern>
                             <shadedPattern>dev.swiss.kix.acf</shadedPattern> <!-- Replace this -->
-                        </relocation>
-                        <relocation>
-                            <pattern>io.papermc.lib</pattern>
-                            <shadedPattern>dev.swiss.kix.paperlib</shadedPattern> <!-- Replace this -->
                         </relocation>
                     </relocations>
                 </configuration>

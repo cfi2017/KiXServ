@@ -30,4 +30,9 @@ public class Permissions {
     public static final String WARP_LIST = "kix.warp.list";
     public static final String WARP_EDIT = "kix.warp.edit";
 
+    /**
+     * View Distance
+     */
+    public static final String VIEW_DISTANCE = "kix.viewdistance";
+
 }

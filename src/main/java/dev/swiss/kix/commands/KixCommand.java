@@ -5,9 +5,11 @@ import dev.swiss.kix.ExtendedBaseCommand;
 import dev.swiss.kix.Main;
 import dev.swiss.kix.Permissions;
 import dev.swiss.kix.profanity.ReplacementRule;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Color;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +17,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.stream.Collectors;
 
 @CommandAlias("kix|kixstar|k")
 public class KixCommand extends ExtendedBaseCommand {
@@ -150,6 +151,44 @@ public class KixCommand extends ExtendedBaseCommand {
   @CommandPermission(Permissions.RELOAD_PLUGIN)
   public void onReload() {
     this.plugin.reload();
+  }
+
+  @Subcommand("vd")
+  @CommandPermission(Permissions.VIEW_DISTANCE)
+  public void onViewDistance(Player player) {
+    Integer highest = getHighestViewDistanceForPlayer(player);
+    player.sendMessage(String.format("%sYour view distance is %d", ChatColor.GREEN, player.getViewDistance()));
+  }
+
+  @Subcommand("vd")
+  @CommandPermission(Permissions.VIEW_DISTANCE)
+  public void onViewDistance(Player player, Integer distance) {
+    Integer highest = getHighestViewDistanceForPlayer(player);
+
+    if (distance < 4) setViewDistance(player, 4);
+    else if (distance > highest) {
+      setViewDistance(player, highest);
+    } else setViewDistance(player, distance);
+
+  }
+
+  private void setViewDistance(Player player, Integer distance) {
+    player.sendMessage(String.format("%sSetting your view distance to %d.", ChatColor.GREEN, distance));
+    try {
+      player.setViewDistance(distance);
+    } catch (NotImplementedException ex) {
+      player.sendMessage(String.format("%sError: setViewDistance is not available in this version of paper.", ChatColor.RED));
+    }
+  }
+
+  private Integer getHighestViewDistanceForPlayer(Player player) {
+    int defaultDistance = Bukkit.getServer().getViewDistance();
+    for (int i = 20; i > defaultDistance; i--) {
+      if (player.hasPermission(String.format("%s.%d", Permissions.VIEW_DISTANCE, i))) {
+        return i;
+      }
+    }
+    return defaultDistance;
   }
 
   @Subcommand("warp add")
