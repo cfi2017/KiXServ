@@ -16,7 +16,7 @@ import java.util.Map;
 
 public class SpawnerDestroyFilter implements Listener {
 
-  Map<EntityType, ItemStack> typeDrops = new HashMap<>();
+  private Map<EntityType, ItemStack> typeDrops = new HashMap<>();
 
   public SpawnerDestroyFilter() {
 
