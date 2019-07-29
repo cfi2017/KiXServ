@@ -3,7 +3,6 @@ package dev.swiss.kix.commands;
 import co.aikar.commands.annotation.*;
 import com.onarandombox.MultiverseCore.MultiverseCore;
 import com.onarandombox.MultiverseCore.api.MVWorldManager;
-import com.sk89q.worldedit.WorldEdit;
 import dev.swiss.kix.ExtendedBaseCommand;
 import dev.swiss.kix.Main;
 import dev.swiss.kix.Multiverse;
