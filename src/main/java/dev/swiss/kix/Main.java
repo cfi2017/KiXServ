@@ -1,6 +1,7 @@
 package dev.swiss.kix;
 
 import co.aikar.commands.PaperCommandManager;
+import com.onarandombox.MultiverseCore.MultiverseCore;
 import dev.swiss.kix.commands.KixCommand;
 import dev.swiss.kix.profanity.ProfanityFilter;
 import dev.swiss.kix.profanity.ReplacementRule;
@@ -21,9 +22,15 @@ public class Main extends JavaPlugin {
     public static ProfanityFilter profanityFilter = new ProfanityFilter();
     public static SpawnerDestroyFilter spawnerDestroyFilter = new SpawnerDestroyFilter();
     public static final Logger LOGGER = LoggerFactory.getLogger("KiXServ");
+    private MultiverseCore multiverseCore;
 
     @Override
     public void onEnable() {
+        if (Multiverse.getCore() == null) {
+            LOGGER.error("Multiverse Core not present.");
+            getServer().getPluginManager().disablePlugin(this);
+        }
+
         ConfigurationSerialization.registerClass(ReplacementRule.class, "ReplacementRule");
 
         config.options().copyDefaults(true);

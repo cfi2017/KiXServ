@@ -1,8 +1,12 @@
 package dev.swiss.kix.commands;
 
 import co.aikar.commands.annotation.*;
+import com.onarandombox.MultiverseCore.MultiverseCore;
+import com.onarandombox.MultiverseCore.api.MVWorldManager;
+import com.sk89q.worldedit.WorldEdit;
 import dev.swiss.kix.ExtendedBaseCommand;
 import dev.swiss.kix.Main;
+import dev.swiss.kix.Multiverse;
 import dev.swiss.kix.Permissions;
 import dev.swiss.kix.profanity.ReplacementRule;
 import org.bukkit.Bukkit;
@@ -212,6 +216,16 @@ public class KixCommand extends ExtendedBaseCommand {
   @Subcommand("warp list")
   @CommandPermission(Permissions.WARP_LIST)
   public void onWarpList(CommandSender sender) {
+
+  }
+
+  @Subcommand("dungeon create")
+  @CommandPermission(Permissions.DUNGEONS_CREATE)
+  public void onDungeonCreate(CommandSender sender) {
+
+    MultiverseCore core = Multiverse.getCore();
+    MVWorldManager worldManager = core.getMVWorldManager();
+    worldManager.cloneWorld("_kixserv_dungeon_template", "_kixserv_dungeon001");
 
   }
 

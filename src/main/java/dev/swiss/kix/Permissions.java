@@ -35,4 +35,11 @@ public class Permissions {
      */
     public static final String VIEW_DISTANCE = "kix.viewdistance";
 
+    /**
+     * Dungeons
+     */
+    public static final String DUNGEONS_ADMIN = "kix.dungeons.admin";
+    public static final String DUNGEONS_CREATE = "kix.dungeons.create";
+    public static final String DUNGEONS_EDIT = "kix.dungeons.edit";
+
 }
